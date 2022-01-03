@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled, { ThemeProvider } from "styled-components";
+import { isDarkAtom } from "./atoms";
 import { darkTheme, lightTheme } from "./theme";
 
 
@@ -12,11 +13,13 @@ const H1 = styled.h1`
 `;
 
 function App() {
-  const [isDark, setIsDark] = useState(true);
-  const toggleDark = () => setIsDark((current) => !current)
+  const isDark = useRecoilValue(isDarkAtom);
+  const toggleDark = useSetRecoilState(isDarkAtom);
+  const toggleBtn = () => toggleDark(() => !isDark);
+
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme }>
-      <button onClick={toggleDark}>toggle</button>
+      <button onClick={toggleBtn}>toggle</button>
       <Container><H1>hi</H1></Container>
     </ThemeProvider>
   );
