@@ -27,12 +27,17 @@ import { useForm } from "react-hook-form";
 function ToDoList(){
     // register 함수를 사용하게되면 기존에 사용했던 onChange 이벤트 핸들러가 필요없게된다.
     // watch는 form의 입력 값들의 변화를 관찰 할 수 있게 해주는 함수이다.
-   const { register, watch } = useForm();
+    // handleSubmit은 우리가 작성한 코드가 진행될 수 있게 해준다.
+    // html Input 타입인 required와 minLength로도 가능하지만 자바스크립트만으로도 가능하다 { required: true, minLength: 10 }
+   const { register, watch, handleSubmit } = useForm();
+   const onValid = (data:any) => {
+       console.log(data);
+   };
    console.log(watch());
    return(
        <div>
-           <form>
-               <input {...register("toDo")} placeholder="Write a to do" />
+           <form style={{ display: "flex", flexDirection: "column"}} onSubmit={handleSubmit(onValid)}>
+               <input {...register("toDo", { required: true, minLength: 10 })} placeholder="Write a to do" /> 
                <button>Add</button>
            </form>
        </div>
