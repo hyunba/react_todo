@@ -41,12 +41,17 @@ function ToDoList(){
     // formState를 통해 앞에 넣었던 패턴들에 대해 오류가 있을경우 message를 남겨줄 수 있다.
     // shouldFocus는 에러가 발생한 곳으로 커서가 이동하게된다.
     // ?를 붙이는 이유는 물음표(?) 앞에 있는 내용이 undefined면 뒤에 내용을 찾지 않게하기위해 쓴다.
-   const { register, watch, handleSubmit, formState:{errors}, setError } = useForm<IForm>({ defaultValues: {email:"@naver.com"} });
+    // setValue는 사용자가 입력값을 주면 작성했던 내용들을 없애준다
+   const { register, watch, handleSubmit, formState:{errors}, setError, setValue } = useForm<IForm>({ defaultValues: {email:"@naver.com"} });
    const onValid = (data:IForm) => {
        console.log(data);
        if(data.password !== data.password2){
            setError("password", {message:"password are not same"}, {shouldFocus:true})
        }
+        setValue("email","");
+        setValue("id","");
+        setValue("password","");
+        setValue("password2","");
    };
    // console.log(watch());
    console.log(errors);
