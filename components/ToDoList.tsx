@@ -3,29 +3,6 @@ import { useForm } from "react-hook-form";
 import { errorSelector } from "recoil";
 import { isNativeError } from "util/types";
 
-// function ToDoList () {
-//     const [toDo, setToDo] = useState("")
-//     const onChange = (event:React.FormEvent<HTMLInputElement>) => {
-//         const {
-//             currentTarget : {value}, 
-//         } = event;
-//         setToDo(value);
-//     };
-//     const onSubmit = (event:React.FormEvent<HTMLFormElement>) => {
-//         event.preventDefault();
-//         console.log(toDo);
-//     };
-//     // 앞서 작성한 코드들은 reac-hook-form에서는 한 줄의 코드로 가능하게 해준다.
-//     return (
-//         <div>
-//             <form onSubmit={onSubmit}>
-//                 <input onChange={onChange} value={toDo} placeholder="Write a to do" />
-//                 <button>Add</button>
-//             </form>
-//         </div>
-//     );
-// }
-
 interface IForm {
     email?: string;
     id: string;
