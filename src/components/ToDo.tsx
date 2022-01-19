@@ -16,6 +16,19 @@ function ToDo({text, category, id}:IToDo) {
                 ...oldToDos.slice(targetIndex + 1),
             ];
         });
+    const handleDeleteToDo = (event:React.MouseEvent<HTMLButtonElement>) => {
+        const {
+            currentTarget: { parentElement },
+        } = event;
+        
+        setToDos((todoArray) => {
+            const newTodoArray = todoArray.filter((todo) => todo.id !== Number(parentElement?.id));
+            const stringifiedNewToDos = JSON.stringify(newTodoArray);
+            localStorage.setItem("ToDos", stringifiedNewToDos);
+            return newTodoArray;
+            });
+        };
+
     };
     return (
         <li>
@@ -23,6 +36,7 @@ function ToDo({text, category, id}:IToDo) {
             {category !== Categories.TO_DO && <button name={Categories.DOING} onClick={onClick}>Doing</button>}
             {category !== Categories.DOING && <button name={Categories.TO_DO} onClick={onClick}>To Do</button>}
             {category !== Categories.DONE && <button name={Categories.DONE} onClick={onClick}>Done</button>}
+            <button onClick={handleDeleteToDo}>delete</button>
         </li>);
 }
 
