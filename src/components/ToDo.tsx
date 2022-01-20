@@ -36,7 +36,7 @@ function ToDo({text, category, id}:IToDo) {
             {category !== Categories.TO_DO && <button name={Categories.DOING} onClick={onClick}>Doing</button>}
             {category !== Categories.DOING && <button name={Categories.TO_DO} onClick={onClick}>To Do</button>}
             {category !== Categories.DONE && <button name={Categories.DONE} onClick={onClick}>Done</button>}
-            <button onClick={handleDeleteToDo}>delete</button>
+            <button onClick={empty}>delete</button>
         </li>);
 }
 
