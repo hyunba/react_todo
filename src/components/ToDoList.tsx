@@ -37,7 +37,9 @@ function ToDoList(){
            <h2>Done</h2>
            <ul>
                {done.map((toDo) => (<ToDo key={toDo.id} {...toDo}/>))}
-           </ul> */}
+           </ul>
+           select로 묶기
+           */}
        </div>
    );
 }
